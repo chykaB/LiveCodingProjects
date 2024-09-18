@@ -14,15 +14,20 @@ print(f"You have {max_attempts} attempts to guess the correct number")
 
 while attempt < max_attempts and not correct_guess:
     guess = int(input("Guess the correct number: "))
+    if guess < 1 or guess > 10:
+        print("Out of range! Please guess a number between 1 and 10.")
+        continue
+
     attempt += 1
 
-    if guess < random_number:
+    if guess == random_number:
+        print(f"Congratulations! You guessed the correct number: {random_number}")
+        correct_guess = True
+    elif guess < random_number:
         print(f"Too low, try again")
     elif guess > random_number:
         print(f"{guess} is too high, try again")
-    else:
-        print(f"Congratulations! you guessed the correct number in {attempt} attempts")
-        correct_guess = True
+
 if not correct_guess:
     print(f"Sorry you have used all {max_attempts}, the correct number was {random_number}")
 
